@@ -196,12 +196,6 @@ pip install -r requirements.txt
 python main.py
 ```
 
-Для создания portable-сборки используется PyInstaller:
-
-```powershell
-pyinstaller ProjectZomboidModInspector.spec
-```
-
 Готовая сборка появится в:
 
 ```text
