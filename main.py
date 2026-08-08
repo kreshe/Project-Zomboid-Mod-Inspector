@@ -5,15 +5,61 @@ from PySide6.QtWidgets import QApplication
 
 from ui.main_window import MainWindow
 from ui.style import STYLE
-
+from core.updater import check_for_update
 
 app = QApplication(sys.argv)
+from PySide6.QtWidgets import (
+    QApplication,
+    QMessageBox
+)
 
+from core.updater import (
+    APP_VERSION,
+    check_for_update
+)
 
 window = MainWindow()
 window.setStyleSheet(
     STYLE
 )
+
+update = check_for_update()
+
+if update:
+
+    version = update["version"]
+
+    message = QMessageBox(
+        QMessageBox.Information,
+        "Доступно обновление",
+        (
+            f"Доступна новая версия Project Zomboid Mod Inspector.\n\n"
+            f"Текущая версия:  v{APP_VERSION}\n"
+            f"Новая версия:    {version}\n\n"
+            f"Хотите открыть страницу загрузки?"
+        )
+    )
+
+    update_button = message.addButton(
+        "Обновить",
+        QMessageBox.AcceptRole
+    )
+
+    message.addButton(
+        "Позже",
+        QMessageBox.RejectRole
+    )
+
+    message.exec()
+
+    if message.clickedButton() == update_button:
+
+        import webbrowser
+
+        webbrowser.open(
+            update["url"]
+        )
+
 
 window.show()
 
