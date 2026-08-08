@@ -246,8 +246,5 @@ dist\ProjectZomboidModInspector\
 ## 👤 Автор
 
 **kreshe**
+
 **AshesTale**
-
-GitHub:
-
-`https://github.com/kreshe/Project-Zomboid-Mod-Inspector`
